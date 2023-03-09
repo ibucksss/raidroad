@@ -14,4 +14,7 @@ Raid Road is a 2D video game made with Java. The end goal is to have a functiona
 -worked to ensure that the character stays in the center of the map at all times.
 -map only renders the 16x12 area around the character rather than the entire 50x50 map.
 
+3-8
+-added collision detection for tiles such as water and walls
+-added items(no interaction) such as keys and doors. 
 
