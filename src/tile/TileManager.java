@@ -12,12 +12,12 @@ import main.GamePanel;
 
 public class TileManager {
 	GamePanel gp;
-	Tile[] tile;
-	int mapTileNum[][];
+	public Tile[] tile;
+	public int mapTileNum[][];
 	public TileManager(GamePanel gp) {
 		this.gp = gp;
 		tile = new Tile[10];//creates 10 tiles.
-		mapTileNum = new int[gp.maxWorldCol][gp.maxWorldRow]; //stores the numbers of our map txt file.
+		 mapTileNum = new int[gp.maxWorldCol][gp.maxWorldRow]; //stores the numbers of our map txt file.
 		getTileImage();
 		loadMap("/maps/map.txt");
 	}
@@ -31,12 +31,15 @@ public class TileManager {
 			
 			tile[2] = new Tile();
 			tile[2].image = ImageIO.read(getClass().getResourceAsStream("/Tiles/water.png"));
+			tile[2].collision = true;
 			
 			tile[3] = new Tile();
 			tile[3].image = ImageIO.read(getClass().getResourceAsStream("/Tiles/wood.png"));
+			tile[3].collision = true;
 			
 			tile[4] = new Tile();
 			tile[4].image = ImageIO.read(getClass().getResourceAsStream("/Tiles/tree.png"));
+			tile[4].collision = true;
 			
 	}catch(IOException e) {
 		e.printStackTrace();

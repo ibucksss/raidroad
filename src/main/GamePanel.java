@@ -8,6 +8,7 @@ import java.awt.Graphics2D;
 import javax.swing.JPanel;
 
 import entity.Player;
+import object.SuperObject;
 import tile.TileManager;
 public class GamePanel extends JPanel implements Runnable{
 	
@@ -30,7 +31,10 @@ public class GamePanel extends JPanel implements Runnable{
 	int FPS = 60;
 	KeyHandler keyH = new KeyHandler();
 	Thread gameThread; //Will keep game time, can be started and stopped. 
+	public CollisionCheck colCheck = new CollisionCheck(this); 
 	public Player player = new Player(this, keyH);
+	public AssetSetter aSet = new AssetSetter(this);
+	public SuperObject obj[] = new SuperObject[10];
 	TileManager tileMan = new TileManager(this);
 	
 	public GamePanel() {
@@ -40,7 +44,9 @@ public class GamePanel extends JPanel implements Runnable{
 		this.addKeyListener(keyH);
 		this.setFocusable(true); //Allows the game panel to be focused by the keyboard
 	}
-	
+	public void setupGame() {
+		aSet.setObject();
+	}
 	public void startGameThread() {
 		gameThread = new Thread(this); //Passing game panel class into thread constructor
 		gameThread.start(); //Starts thread, calls run method.
@@ -81,7 +87,16 @@ public class GamePanel extends JPanel implements Runnable{
 		super.paintComponent(g);
 		
 		Graphics2D g2 = (Graphics2D)g; //Graphics 2D extends the Graphics class and provides better control over geometry, colors and text, etc.
+		//Draw Tiles
 		tileMan.draw(g2);
+		
+		//Draw Objects
+		for(int i =0; i < obj.length; i++) {
+			if(obj[i] != null) {
+				obj[i].draw(g2, this);
+			}
+		}
+		//Draw Player
 		player.draw(g2);
 		g2.dispose(); //Dispose of the graphics context and release any system resources that it is using. Good for memory management.
 	}

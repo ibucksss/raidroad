@@ -1,5 +1,6 @@
 package entity;
 
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 //Used to store variables that will be used by players, NPCs, mobs, etc.
@@ -12,4 +13,6 @@ public class Entity {
 	public String direction;
 	public int spriteCounter = 0;
 	public int spriteNum = 1;
+	public Rectangle solidArea; //creates a rectangle that is invisible to the player, will be for player collision settings. 
+	public boolean collisionOn = false;
 }
